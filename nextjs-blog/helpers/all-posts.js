@@ -1,7 +1,7 @@
 import { donateNearby } from "@/content/posts/donateNearby";
-import { donateNearby2 } from "@/content/posts/donateNearby2";
+import { homeBudget } from "@/content/posts/homeBudget";
 
-const allPosts = [donateNearby, donateNearby2];
+const allPosts = [donateNearby, homeBudget];
 
 export const getAllOrFeaturedPosts = (boolean = false) => {
   if (boolean) {
