@@ -1,9 +1,10 @@
 import classes from "./post-header.module.css";
 import Image from "next/image";
-function PostHeader({ title, image }) {
+import Link from "next/link";
+function PostHeader({ title, image, webpage }) {
   return (
       <header className={classes.header}>
-        <h1>{title}</h1>
+        <h1><Link href={webpage}>{ title }</Link></h1>
         <Image
             src={image}
             alt={title}

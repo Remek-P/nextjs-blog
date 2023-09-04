@@ -1,8 +1,7 @@
 import Hero from "@/components/home-page/hero";
 import FeaturedPosts from "@/components/home-page/featured-posts";
 
-import {donateNearby} from "@/content/posts/donateNearby";
-import {donateNearby2} from "@/content/posts/donateNearby2";
+import { getAllOrFeaturedPosts } from "@/helpers/all-posts";
 
 function HomePage({ posts }) {
 
@@ -21,9 +20,9 @@ function HomePage({ posts }) {
 
 export function getStaticProps() {
 
-  const allPosts = [donateNearby, donateNearby2];
+  const featuredPosts = getAllOrFeaturedPosts(true);
 
-  return { props: { posts: allPosts }}
+  return { props: { posts: featuredPosts }}
 }
 
 export default HomePage;

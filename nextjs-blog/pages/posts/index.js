@@ -1,7 +1,6 @@
 import AllPosts from "@/components/posts/all-posts";
 
-import { donateNearby } from "@/content/posts/donateNearby";
-import { donateNearby2 } from "@/content/posts/donateNearby2";
+import { getAllOrFeaturedPosts } from "@/helpers/all-posts";
 
 function AllPostsPage({ posts }) {
 
@@ -11,10 +10,11 @@ function AllPostsPage({ posts }) {
 }
 
 export function getStaticProps() {
+  const posts = getAllOrFeaturedPosts();
 
-  const allPosts = [donateNearby, donateNearby2];
-
-    return { props: { posts: allPosts }}
+  return {
+    props: { posts: posts }
+  }
 }
 
 export default AllPostsPage;

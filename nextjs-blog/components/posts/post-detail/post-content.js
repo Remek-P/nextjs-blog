@@ -1,26 +1,41 @@
 import classes from "./post-content.module.css";
 import PostHeader from "@/components/posts/post-detail/post-header";
+import {Lister} from "@/components/posts/post-detail/lister";
 
-const DUMMY_POST = {
-  title: "Getting started with nextjs 1",
-  image: "getting-started-nextjs.png",
-  content: "# This is a first post",
-  date: "2023-08-23",
-  slug: "getting-started-with-nextjs1",
-}
-function PostContent() {
+function PostContent({ post }) {
 
-  const slug = DUMMY_POST.slug;
-  const image = DUMMY_POST.image;
-  const title = DUMMY_POST.title;
-  const content = DUMMY_POST.content;
+  const { title, image, description, tech, otherInfo, slug, webpage, shoutout } = post;
 
-  const imagePath = `/images/posts/${slug}/${image}`
+  const imagePath = `/images/posts/${slug}/${image}`;
 
   return (
       <article className={classes.content}>
-        <PostHeader title={title} image={imagePath}/>
-        <h1>{ content }</h1>
+        <PostHeader title={title} image={imagePath} webpage={webpage} />
+        <div>{ description }</div>
+        <p>
+          <h2>Technology used</h2>
+          <ul><Lister list={tech} /></ul>
+        </p>
+        <p>
+          <h2>Additional info</h2>
+          <div>
+            <h3>Form</h3>
+            <ul><Lister list={otherInfo.form} /></ul>
+          </div>
+          <div>
+            <h3>Register</h3>
+            <ul><Lister list={otherInfo.register} /></ul>
+          </div>
+          <div>
+            <h3>Other</h3>
+            <ul><Lister list={otherInfo.other} /></ul>
+          </div>
+          <div>
+            <h3>Caveat</h3>
+            <ul><Lister list={otherInfo.caveat} /></ul>
+          </div>
+        </p>
+        <div>{ shoutout }</div>
       </article>
   );
 }
