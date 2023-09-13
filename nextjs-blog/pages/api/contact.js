@@ -40,12 +40,12 @@ async function handler(req, res) {
       const result = await db.collection("messages").insertOne(newMessage);
       newMessage._id = result.insertedId;
     } catch (error) {
-      client.close()
+      await client.close()
       res.status(500).json({message: message500b});
       return
     }
 
-    client.close();
+    await client.close();
 
     res.status(201).json({ message: message201, newMessage })
   }
