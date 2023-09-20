@@ -8,6 +8,7 @@ async function handler(req, res) {
   const message500b = "Storing messaged failed";
 
   if (req.method === "POST") {
+
     let client;
     const { email, name, message } = req.body;
 
@@ -27,8 +28,10 @@ async function handler(req, res) {
       message,
     }
 
+    const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_cluster}.${process.env.mongodb_database}.mongodb.net/?retryWrites=true&w=majority`
+
     try {
-      client = await MongoClient.connect("mongodb+srv://remek:NtNBgWX9BZjwu51P@tutorials.u0jzjy9.mongodb.net/?retryWrites=true&w=majority")
+      client = await MongoClient.connect(connectionString)
     } catch (error) {
       res.status(500).json({message: message500a});
       return
@@ -37,7 +40,7 @@ async function handler(req, res) {
     const db = client.db();
 
     try {
-      const result = await db.collection("messages").insertOne(newMessage);
+      const result = await db.collection(process.env.mongodb_collection).insertOne(newMessage);
       newMessage._id = result.insertedId;
     } catch (error) {
       await client.close()
