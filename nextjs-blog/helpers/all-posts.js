@@ -1,5 +1,5 @@
-import { donateNearby } from "@/content/posts/donateNearby";
-import { homeBudget } from "@/content/posts/homeBudget";
+import { donateNearby } from "@/content/posts/donate-nearby";
+import { homeBudget } from "@/content/posts/home-budget";
 
 const allPosts = [donateNearby, homeBudget];
 

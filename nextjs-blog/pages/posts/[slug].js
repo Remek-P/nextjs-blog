@@ -24,13 +24,9 @@ export function getStaticProps(context) {
   const { params } = context;
   const { slug } = params;
 
-  const post = getPost(slug)
+  const post = getPost(slug);
 
-  return {
-    props: {
-      post: post
-    }
-  }
+  return { props: { post: post } }
 }
 
 export function getStaticPaths() {
@@ -40,9 +36,8 @@ export function getStaticPaths() {
   const allPosts = fs.readdirSync(postsDirectory);
   const slugs = allPosts.map(slugName => slugName.replace(/\.js$/, ""));
 
-
   return {
-    paths: slugs.map(slug => ({params: {slug: slug}})),
+    paths: slugs.map(slug => ({ params: { slug: slug } })),
     fallback: "blocking"
   }
 }
